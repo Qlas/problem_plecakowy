@@ -12,14 +12,14 @@ Algorithm's:
 
 -----------------------
 
-Pierwszy argument to œcie¿ka do csv
-drugi argument to pojemnoœæ plecaka
+Pierwszy argument to sciezka do csv
+drugi argument to pojemnosc plecaka
 trzeci argument to numer algorytmu
 
-przyk³ad:
+przyklad:
 php knapsack.php data.csv 100 0
 
 Algorytmy:
-0 - Algorytm zach³anny
-1 - Przegl¹d zupe³ny
+0 - Algorytm zachlanny
+1 - Przeglad zupelny
 2 - Dynamiczne Programowanie
