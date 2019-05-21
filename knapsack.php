@@ -151,38 +151,49 @@ function dynamic($items, $max_weight, $n)
             $knapsack -> return_items();
         } 
 
+function checknum($number1, $number2)
+{
+    if (!is_numeric($number1) || !is_numeric($number2)) #max weight and num algorithm is number
+    {
+        throw new Exception("Maksymalny udźwig i numer algorytmu muszą być liczbami");
+    }
+    return TRUE;
+}
+
 if (sizeof($argv) != 4) #input length
 {
     echo "Zła liczba argumentów";
     exit;
 }
-if (!is_numeric($argv[2]) || !is_numeric($argv[3])) #max weight and num algorithm is number
-{
-    echo "Maksymalny udźwig i numer algorytmu muszą być liczbami";
-    exit;
-}
-$items = read_csv($argv[1]);
+try{
+    checknum($argv[2], $argv[3]);
 
-switch ($argv[3])
-{
-    case 0:
-        echo "Algorytm Zachłanny\n";
-        greedy($items, $argv[2]);
-        break;
-    case 1:
-        if(sizeof($items) <= 17) #not more items than 17
-        {
-            echo "Brute Force\n";
-            brute_force($items, $argv[2]);
-        }
-        else
-            echo "Nie można zrobić przeglądu zupełnego powyżej 17 elementów";
-        break;
-    case 2:
-        echo "Dynamic Programming\n";
-        dynamic($items, $argv[2], sizeof($items)); 
-        break;
-    default:
-        echo "Zły numer algorytmu";
+    $items = read_csv($argv[1]);
+
+    switch ($argv[3])
+    {
+        case 0:
+            echo "Algorytm Zachłanny\n";
+            greedy($items, $argv[2]);
+            break;
+        case 1:
+            if(sizeof($items) <= 17) #not more items than 17
+            {
+                echo "Brute Force\n";
+                brute_force($items, $argv[2]);
+            }
+            else
+                echo "Nie można zrobić przeglądu zupełnego powyżej 17 elementów";
+            break;
+        case 2:
+            echo "Dynamic Programming\n";
+            dynamic($items, $argv[2], sizeof($items)); 
+            break;
+        default:
+            echo "Zły numer algorytmu";
+}
+}
+catch(Exception $e){
+    echo 'Message: ', $e->GetMessage();
 }
 ?>
